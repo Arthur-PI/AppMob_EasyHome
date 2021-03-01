@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">EasyHome</string>
+    <string name="bottom_navigation_menu_1">Partie 1</string>
+    <string name="bottom_navigation_menu_2">Partie 2</string>
+    <string name="bottom_navigation_menu_3">Partie 3</string>
 </resources>
