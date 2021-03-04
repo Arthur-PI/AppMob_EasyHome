@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "158761901075",
+    "project_id": "easyhome-e1ee2",
+    "storage_bucket": "easyhome-e1ee2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158761901075:android:50887b65e641feee9773e6",
+        "android_client_info": {
+          "package_name": "com.example.easyhome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158761901075-r7188uumfo6qlnt56auldh53cn2pa59i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlgs8okD65wUCRl99912KXuv4rdIEOZ7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158761901075-r7188uumfo6qlnt56auldh53cn2pa59i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158761901075:android:addaad789c14dda19773e6",
+        "android_client_info": {
+          "package_name": "fr.appmob.easyhome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158761901075-r7188uumfo6qlnt56auldh53cn2pa59i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlgs8okD65wUCRl99912KXuv4rdIEOZ7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158761901075-r7188uumfo6qlnt56auldh53cn2pa59i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

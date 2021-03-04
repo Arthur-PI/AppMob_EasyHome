@@ -22,9 +22,12 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="327dp"
-        android:layout_height="148dp"
+        android:layout_width="55dp"
+        android:layout_height="22dp"
         android:text="Favoris"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="213dp" />
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
 </androidx.constraintlayout.widget.ConstraintLayout>

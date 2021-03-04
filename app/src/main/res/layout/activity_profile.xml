@@ -25,6 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profile"
-        tools:layout_editor_absoluteX="184dp"
-        tools:layout_editor_absoluteY="315dp" />
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047" />
 </androidx.constraintlayout.widget.ConstraintLayout>
