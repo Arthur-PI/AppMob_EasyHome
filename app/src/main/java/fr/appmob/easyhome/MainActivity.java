@@ -9,11 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
-
-
     BottomNavigationView bottomNavigationView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +17,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation);
         this.configureBottomView();
-
     }
-
-
-
 
     private void configureBottomView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> updateMainFragment(item.getItemId()));
     }
-
 
     private Boolean updateMainFragment(Integer integer){
         switch (integer) {

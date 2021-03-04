@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,11 +25,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
         mail = findViewById(R.id.emailAddress);
         password = findViewById(R.id.password);
         button  = findViewById(R.id.loginButton);
+
         button.setOnClickListener(this);
     }
 
@@ -40,31 +43,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateUI(FirebaseUser currentUser) {
-
-
-
     }
 
     @Override
     public void onClick(View v) {
-        String email = mail.getText().toString().trim(),
-                password = this.password.getText().toString().trim();
-        if (email.isEmpty()){
-            return ;
-        }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) return;
-        if (password.isEmpty()){
-            return ;
+        String email = mail.getText().toString().trim();
+        String password = this.password.getText().toString().trim();
+
+        if (!validateData(email, password)) {
+            Toast.makeText(LoginActivity.this, "Les informations de sont pas valides " + email + " " + password, Toast.LENGTH_LONG).show();
+            return;
         }
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
-                }else{
+                    Toast.makeText(LoginActivity.this, "User login avec succes !", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Credentials invalides", Toast.LENGTH_LONG).show();
                     Log.w(TAG, "signIn:failure", task.getException());
                 }
-            }});
-
+            }
+        });
     }
+
+    private boolean validateData(String email, String password) {
+        boolean flag = true;
+
+        if (email.isEmpty()) flag = false ;
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) flag = false ;
+        if (password.isEmpty()) flag = false ;
+
+        return flag;
+    }
+
 }
