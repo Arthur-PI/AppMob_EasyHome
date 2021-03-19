@@ -3,4 +3,20 @@
     <string name="bottom_navigation_menu_1">Partie 1</string>
     <string name="bottom_navigation_menu_2">Partie 2</string>
     <string name="bottom_navigation_menu_3">Partie 3</string>
+
+    <!--  Login Page  -->
+    <string name="login_title">Connexion</string>
+    <string name="login_validate_button">Login</string>
+    <string name="login_placeholder_email">*************</string>
+    <string name="login_placeholder_password">user@email.com</string>
+
+    <!--  Register Page  -->
+    <string name="register_title">Inscription</string>
+    <string name="register_button">Register</string>
+    <string name="register_placeholder_nom">lastname</string>
+    <string name="register_placeholder_prenom">name</string>
+    <string name="register_placeholder_email">user@email.com</string>
+    <string name="register_placeholder_password">*************</string>
+    <string name="register_placeholder_confirm_password">*************</string>
+
 </resources>
