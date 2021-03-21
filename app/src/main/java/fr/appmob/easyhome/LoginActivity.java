@@ -3,6 +3,8 @@ package fr.appmob.easyhome;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -21,7 +23,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private EditText mail, password;
-    private Button button;
+    private Button button,button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mail = findViewById(R.id.emailAddress);
         password = findViewById(R.id.password);
         button  = findViewById(R.id.loginButton);
+        button2 = findViewById(R.id.registerButton);
 
+        button2.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Intent profileActivity= new Intent(getApplicationContext(),RegisterActivity.class);
+                startActivity(profileActivity);
+                finish();
+            }
+        });
         button.setOnClickListener(this);
     }
 
@@ -61,6 +72,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(LoginActivity.this, "User login avec succes !", Toast.LENGTH_LONG).show();
+                    Intent profileActivity= new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(profileActivity);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Credentials invalides", Toast.LENGTH_LONG).show();
                     Log.w(TAG, "signIn:failure", task.getException());

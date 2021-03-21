@@ -1,4 +1,4 @@
-package fr.appmob.easyhome;
+package fr.appmob.easyhome.models;
 
 public class User {
     private String nom, prenom, email;

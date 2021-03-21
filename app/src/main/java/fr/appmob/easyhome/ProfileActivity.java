@@ -29,12 +29,12 @@ public class ProfileActivity extends AppCompatActivity {
             case R.id.menu_2:
                 Intent mainActivity= new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(mainActivity);
-                finish();
+
                 break;
             case R.id.menu_3:
                 Intent favoriteActivity= new Intent(getApplicationContext(),FavoriteActivity.class);
                 startActivity(favoriteActivity);
-                finish();
+
                 break;
         }
         return true;

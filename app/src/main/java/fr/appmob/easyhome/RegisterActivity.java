@@ -2,6 +2,7 @@ package fr.appmob.easyhome;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -14,14 +15,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import fr.appmob.easyhome.models.User;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "RegisterActivity";
     private FirebaseAuth mAuth;
     private EditText nom, prenom, email, password, confirmPassword;
-    private Button button;
+    private Button button,button2;
 
 
     @Override
@@ -37,6 +39,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirm_password);
         button = findViewById(R.id.button);
+        button2 = findViewById(R.id.buttonLogin);
+
+        button2.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Intent profileActivity= new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(profileActivity);
+                finish();
+            }
+        });
 
         button.setOnClickListener(this);
     }
@@ -70,6 +82,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         public void onComplete(@NonNull Task task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(RegisterActivity.this, "User inscrit avec succes !", Toast.LENGTH_LONG).show();
+                                Intent profileActivity= new Intent(getApplicationContext(),LoginActivity.class);
+                                startActivity(profileActivity);
+                                finish();
+
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Erreur lors de l'ajout dans la DB !", Toast.LENGTH_LONG).show();
                             }
