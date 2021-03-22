@@ -1,6 +1,8 @@
 package fr.appmob.easyhome;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -21,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation);
         this.configureBottomView();
-        recyclerView = findViewById(R.id.recycleView);
+        Fragment f = ItemFragmentProduct.newInstance();
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.list_adverts, f, "ListAdverts").commit();
 
     }
 

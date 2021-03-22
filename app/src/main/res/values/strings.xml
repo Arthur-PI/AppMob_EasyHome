@@ -7,8 +7,8 @@
     <!--  Login Page  -->
     <string name="login_title">Connexion</string>
     <string name="login_validate_button">Login</string>
-    <string name="login_placeholder_email">*************</string>
-    <string name="login_placeholder_password">user@email.com</string>
+    <string name="login_placeholder_email">user@email.com</string>
+    <string name="login_placeholder_password">*************</string>
 
     <!--  Register Page  -->
     <string name="register_title">Inscription</string>
