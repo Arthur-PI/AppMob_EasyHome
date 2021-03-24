@@ -20,6 +20,11 @@ public class DataHandler {
 
 	private List<Advert> adverts;
 	private String lastAdvertID;
+
+	public Criteria getCriteres() {
+		return criteres;
+	}
+
 	private Criteria criteres;
 
 	static {

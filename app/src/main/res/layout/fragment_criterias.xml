@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/property_type_house"
+            android:layout_width="93dp"
+            android:layout_height="47dp"
+            android:text="Maison"
+            tools:layout_editor_absoluteX="46dp"
+            tools:layout_editor_absoluteY="94dp" />
+
+        <CheckBox
+            android:id="@+id/property_type_apartment"
+            android:layout_width="135dp"
+            android:layout_height="47dp"
+            android:text="Appartement"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="94dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rooms">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Surface"
+                tools:layout_editor_absoluteX="46dp"
+                tools:layout_editor_absoluteY="340dp" />
+
+            <EditText
+                android:id="@+id/area_max"
+                android:layout_width="121dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Max"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="320dp" />
+
+            <EditText
+                android:id="@+id/area_min"
+                android:layout_width="121dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Min"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="112dp"
+                tools:layout_editor_absoluteY="320dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prix"
+                tools:layout_editor_absoluteX="46dp"
+                tools:layout_editor_absoluteY="403dp" />
+
+            <EditText
+                android:id="@+id/price_min"
+                android:layout_width="121dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Min"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="112dp"
+                tools:layout_editor_absoluteY="387dp" />
+
+            <EditText
+                android:id="@+id/price_max"
+                android:layout_width="121dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Max"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="387dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <CheckBox
+            android:id="@+id/search_type_buy"
+            android:layout_width="92dp"
+            android:layout_height="48dp"
+            android:text="Acheter"
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="449dp" />
+
+        <CheckBox
+            android:id="@+id/search_type_rent"
+            android:layout_width="82dp"
+            android:layout_height="47dp"
+            android:text="Louer"
+            tools:layout_editor_absoluteX="152dp"
+            tools:layout_editor_absoluteY="449dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/rooms"
+        android:layout_width="121dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Nb de pièces"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postal_code" />
+
+
+    <Button
+        android:id="@+id/criteres_envoyer_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Envoyer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+    <EditText
+        android:id="@+id/postal_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="Codes Postaux"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Critères"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

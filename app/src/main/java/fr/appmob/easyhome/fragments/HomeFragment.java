@@ -4,24 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import fr.appmob.easyhome.adapters.MyAdvertsAdapter;
 import fr.appmob.easyhome.R;
+import fr.appmob.easyhome.adapters.MyAdvertsAdapter;
 import fr.appmob.easyhome.models.Advert;
 import fr.appmob.easyhome.models.Criteria;
 import fr.appmob.easyhome.models.DataHandler;
+import fr.appmob.easyhome.models.SessionManagement;
+
 
 public class HomeFragment extends Fragment {
 
 	private RecyclerView recyclerView;
+	private Button criterias;
 
 	@Nullable
 	@Override
@@ -36,18 +42,22 @@ public class HomeFragment extends Fragment {
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-//        Fragment f = ItemProductFragment.newInstance();
-
-//        FragmentManager fm = getSupportFragmentManager();
-//        fm.beginTransaction().replace(R.id.main_fragment, f, "ListAdverts").commit();
+		criterias = view.findViewById(R.id.home_criteres_button);
+		criterias.setOnClickListener(v -> {
+			String tag = "criteria";
+			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+			fragmentTransaction.replace(R.id.main_fragment, new CriteriasFragment(), tag).addToBackStack(null).commit();
+		});
 
 		return view;
 	}
 
 	private List<Advert> getAdverts() {
-		Criteria c = new Criteria("75002", "paris", "25", "150", "100000", null, false, false, true, false);
+		Criteria c = new Criteria("75002","", "paris", "25", "150", "100000", null, false, false, true, false);
 		DataHandler dh = DataHandler.getInstance();
 		dh.setCriteres(c);
 		return dh.getAdverts();
 	}
+
 }

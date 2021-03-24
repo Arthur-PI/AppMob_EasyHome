@@ -19,7 +19,6 @@ import fr.appmob.easyhome.fragments.FavouritesFragment;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
-    RecyclerView recyclerView;
     int currFrag;
 
     @Override

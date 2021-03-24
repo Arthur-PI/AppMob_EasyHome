@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Vector;
 
 public class Criteria {
+
+    private String rooms;
     private String postal_code;
     private String city;
     private String area_max;
@@ -18,7 +20,11 @@ public class Criteria {
     private boolean search_type_rent;
     private boolean modified;
 
-    public Criteria(String postal_code, String city, String area_min, String area_max, String price_min, String price_max, boolean property_type_house, boolean property_type_apartment, boolean search_type_buy, boolean search_type_rent) {
+
+    public Criteria() {
+    }
+    public Criteria(String postal_code,String rooms, String city, String area_min, String area_max, String price_min, String price_max, boolean property_type_house, boolean property_type_apartment, boolean search_type_buy, boolean search_type_rent) {
+        this.rooms = rooms;
         this.city = city;
         this.area_max = area_max;
         this.area_min = area_min;
@@ -30,6 +36,16 @@ public class Criteria {
         this.search_type_buy = search_type_buy;
         this.search_type_rent = search_type_rent;
         this.modified = true;
+    }
+
+
+
+    public String getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(String rooms) {
+        this.rooms = rooms;
     }
 
     public String getCity() {
