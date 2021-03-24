@@ -3,7 +3,7 @@ package fr.appmob.easyhome;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import fr.appmob.easyhome.models.DataHandler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;

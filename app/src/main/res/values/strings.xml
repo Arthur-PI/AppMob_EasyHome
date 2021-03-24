@@ -1,8 +1,22 @@
 <resources>
     <string name="app_name">EasyHome</string>
-    <string name="bottom_navigation_menu_1">Partie 1</string>
-    <string name="bottom_navigation_menu_2">Partie 2</string>
-    <string name="bottom_navigation_menu_3">Partie 3</string>
+    <string name="bottom_navigation_menu_1">Home</string>
+    <string name="bottom_navigation_menu_2">Likes</string>
+    <string name="bottom_navigation_menu_3">Profile</string>
+
+    <!--  Front Page  -->
+    <string name="front_login_button">Connexion</string>
+    <string name="front_register_button">Inscription</string>
+    <string name="front_title">Qui Sommes Nous ?</string>
+    <string name="front_presentation">EASY HOME est le groupe leader spécialiste des portails immobiliers en France. Notre mission est d’offrir à chacun de nos utilisateurs, une expérience immobilière simple et efficace afin qu’ils concrétisent leurs projets d’achat, de vente ou de location en toute sérénité</string>
+    <string name="front_contact_title">Nous Contacter</string>
+    <string name="front_contact_email">assistance@easy-home.com</string>
+    <string name="front_contact_twitter">@EasyHomeSupport</string>
+    <string name="front_title2">Depuis plus de 15 ans, EASY HOME c’est :</string>
+
+
+
+
 
     <!--  Login Page  -->
     <string name="login_title">Connexion</string>
@@ -18,5 +32,9 @@
     <string name="register_placeholder_email">user@email.com</string>
     <string name="register_placeholder_password">*************</string>
     <string name="register_placeholder_confirm_password">*************</string>
+
+    <!--  Home Page  -->
+    <string name="home_title">Annonces</string>
+    <string name="home_criteres_button">Critere</string>
 
 </resources>

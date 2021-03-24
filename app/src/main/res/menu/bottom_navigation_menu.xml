@@ -2,21 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_1"
-        android:checked="false"
-        android:enabled="true"
+        android:id="@+id/nav_home"
         android:icon="@drawable/person_white_24dp"
         android:title="@string/bottom_navigation_menu_1"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_2"
+        android:id="@+id/nav_favourites"
         android:enabled="true"
         android:checked="false"
         android:icon="@drawable/search_white_24dp"
         android:title="@string/bottom_navigation_menu_2"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menu_3"
+        android:id="@+id/nav_profile"
         android:enabled="true"
         android:checked="false"
         android:icon="@drawable/favorite_white_18dp"

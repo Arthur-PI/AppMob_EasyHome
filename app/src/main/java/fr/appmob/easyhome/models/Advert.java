@@ -1,56 +1,12 @@
 package fr.appmob.easyhome.models;
 
 public class Advert {
-    private String url, unique_id, title,ads_type, area, bedrooms, city, published_at, description, elevator, furnished, images_url[], latitude, longitude, others[], postal_code, price, property_type, rooms;
-
-    public Advert(String url, String unique_id, String title, String ads_type, String area, String bedrooms, String city, String published_at, String description, String elevator, String furnished, String[] images_url, String latitude, String longitude, String[] others, String postal_code, String price, String property_type, String rooms) {
-        this.url = url;
-        this.unique_id = unique_id;
-        this.title = title;
-        this.ads_type = ads_type;
-        this.area = area;
-        this.bedrooms = bedrooms;
-        this.city = city;
-        this.published_at = published_at;
-        this.description = description;
-        this.elevator = elevator;
-        this.furnished = furnished;
-        this.images_url = images_url;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.others = others;
-        this.postal_code = postal_code;
-        this.price = price;
-        this.property_type = property_type;
-        this.rooms = rooms;
-    }
-
-    public Advert() {
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUnique_id() {
-        return unique_id;
-    }
-
-    public void setUnique_id(String unique_id) {
-        this.unique_id = unique_id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    private String ads_type, area, city, rooms, bedrooms, title, description, postal_code;
+    private String longitude, latitude, agency_name, floor;
+    private String images_url[], website, property_type, site_id, published_at, created_at;
+    private String geoloc_prob, duplicate, unique_id, url;
+    private boolean agency, coloc_friendly, elevator, furnished, is_new, sous_loc, short_term, anomaly_detected;
+    private int price;
 
     public String getAds_type() {
         return ads_type;
@@ -58,6 +14,14 @@ public class Advert {
 
     public void setAds_type(String ads_type) {
         this.ads_type = ads_type;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getArea() {
@@ -68,14 +32,6 @@ public class Advert {
         this.area = area;
     }
 
-    public String getBedrooms() {
-        return bedrooms;
-    }
-
-    public void setBedrooms(String bedrooms) {
-        this.bedrooms = bedrooms;
-    }
-
     public String getCity() {
         return city;
     }
@@ -84,12 +40,28 @@ public class Advert {
         this.city = city;
     }
 
-    public String getPublished_at() {
-        return published_at;
+    public String getRooms() {
+        return rooms;
     }
 
-    public void setPublished_at(String published_at) {
-        this.published_at = published_at;
+    public void setRooms(String rooms) {
+        this.rooms = rooms;
+    }
+
+    public String getBedrooms() {
+        return bedrooms;
+    }
+
+    public void setBedrooms(String bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -100,36 +72,12 @@ public class Advert {
         this.description = description;
     }
 
-    public String getElevator() {
-        return elevator;
+    public String getPostal_code() {
+        return postal_code;
     }
 
-    public void setElevator(String elevator) {
-        this.elevator = elevator;
-    }
-
-    public String getFurnished() {
-        return furnished;
-    }
-
-    public void setFurnished(String furnished) {
-        this.furnished = furnished;
-    }
-
-    public String[] getImages_url() {
-        return images_url;
-    }
-
-    public void setImages_url(String[] images_url) {
-        this.images_url = images_url;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setPostal_codes(String postal_code) {
+        this.postal_code = postal_code;
     }
 
     public String getLongitude() {
@@ -140,28 +88,44 @@ public class Advert {
         this.longitude = longitude;
     }
 
-    public String[] getOthers() {
-        return others;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setOthers(String[] others) {
-        this.others = others;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getAgency_name() {
+        return agency_name;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setAgency_name(String agency_name) {
+        this.agency_name = agency_name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getFloor() {
+        return floor;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String[] getImages_url() {
+        return images_url;
+    }
+
+    public void setImages_url(String[] images_url) {
+        this.images_url = images_url;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getProperty_type() {
@@ -172,11 +136,125 @@ public class Advert {
         this.property_type = property_type;
     }
 
-    public String getRooms() {
-        return rooms;
+    public String getSite_id() {
+        return site_id;
     }
 
-    public void setRooms(String rooms) {
-        this.rooms = rooms;
+    public void setSite_id(String site_id) {
+        this.site_id = site_id;
     }
+
+    public String getPublished_at() {
+        return published_at;
+    }
+
+    public void setPublished_at(String published_at) {
+        this.published_at = published_at;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getGeoloc_prob() {
+        return geoloc_prob;
+    }
+
+    public void setGeoloc_prob(String geoloc_prob) {
+        this.geoloc_prob = geoloc_prob;
+    }
+
+    public String getDuplicate() {
+        return duplicate;
+    }
+
+    public void setDuplicate(String duplicate) {
+        this.duplicate = duplicate;
+    }
+
+    public String getUnique_id() {
+        return unique_id;
+    }
+
+    public void setUnique_id(String unique_id) {
+        this.unique_id = unique_id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isAgency() {
+        return agency;
+    }
+
+    public void setAgency(boolean agency) {
+        this.agency = agency;
+    }
+
+    public boolean isColoc_friendly() {
+        return coloc_friendly;
+    }
+
+    public void setColoc_friendly(boolean coloc_friendly) {
+        this.coloc_friendly = coloc_friendly;
+    }
+
+    public boolean isElevator() {
+        return elevator;
+    }
+
+    public void setElevator(boolean elevator) {
+        this.elevator = elevator;
+    }
+
+    public boolean isFurnished() {
+        return furnished;
+    }
+
+    public void setFurnished(boolean furnished) {
+        this.furnished = furnished;
+    }
+
+    public boolean isIs_new() {
+        return is_new;
+    }
+
+    public void setIs_new(boolean is_new) {
+        this.is_new = is_new;
+    }
+
+    public boolean isSous_loc() {
+        return sous_loc;
+    }
+
+    public void setSous_loc(boolean sous_loc) {
+        this.sous_loc = sous_loc;
+    }
+
+    public boolean isShort_term() {
+        return short_term;
+    }
+
+    public void setShort_term(boolean short_term) {
+        this.short_term = short_term;
+    }
+
+    public boolean isAnomaly_detected() {
+        return anomaly_detected;
+    }
+
+    public void setAnomaly_detected(boolean anomaly_detected) {
+        this.anomaly_detected = anomaly_detected;
+    }
+
+    public Advert() { }
 }
