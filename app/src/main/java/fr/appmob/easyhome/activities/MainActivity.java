@@ -1,17 +1,20 @@
-package fr.appmob.easyhome;
+package fr.appmob.easyhome.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import fr.appmob.easyhome.fragments.ProfileFragment;
+import fr.appmob.easyhome.fragments.HomeFragment;
+import fr.appmob.easyhome.R;
+import fr.appmob.easyhome.fragments.FavouritesFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,15 +51,15 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             tag = "HOME";
                             break;
-                        case R.id.nav_search:
-                            currFrag = R.id.nav_search;
-                            selectedFragment = new SearchFragment();
-                            tag = "SEARCH";
-                            break;
                         case R.id.nav_favourites:
                             currFrag = R.id.nav_favourites;
                             selectedFragment = new FavouritesFragment();
-                            tag = "FAVOURITES";
+                            tag = "LIKES";
+                            break;
+                        case R.id.nav_profile:
+                            currFrag = R.id.nav_profile;
+                            selectedFragment = new ProfileFragment();
+                            tag = "PROFILE";
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, selectedFragment, tag).commit();

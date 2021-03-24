@@ -1,9 +1,12 @@
-package fr.appmob.easyhome;
+package fr.appmob.easyhome.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import fr.appmob.easyhome.models.DataHandler;
+import fr.appmob.easyhome.R;
+import fr.appmob.easyhome.models.SessionManagement;
+import fr.appmob.easyhome.models.User;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private EditText mail, password;
-    private Button button,button2;
+    private Button login, registerRedirect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,28 +35,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuth = FirebaseAuth.getInstance();
         mail = findViewById(R.id.emailAddress);
         password = findViewById(R.id.password);
-        button  = findViewById(R.id.loginButton);
-        button2 = findViewById(R.id.registerButton);
+        login  = findViewById(R.id.loginButton);
+        registerRedirect = findViewById(R.id.registerButton);
 
-        button2.setOnClickListener( new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                Intent profileActivity= new Intent(getApplicationContext(),RegisterActivity.class);
+        login.setOnClickListener(this);
+
+        registerRedirect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent profileActivity= new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(profileActivity);
                 finish();
             }
         });
-        button.setOnClickListener(this);
-    }
-
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-    private void updateUI(FirebaseUser currentUser) {
     }
 
     @Override
@@ -70,12 +63,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Toast.makeText(LoginActivity.this, "User login avec succes !", Toast.LENGTH_LONG).show();
-                    Intent profileActivity= new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(profileActivity);
-                    finish();
+                    // Get the user Infos
+                    FirebaseUser fUser = mAuth.getCurrentUser();
+
+                    // Save the user Session
+                    User user = new User("INCONNU", "INCONNU", fUser.getEmail(), fUser.getUid());
+                    SessionManagement sessionManagement = new SessionManagement(LoginActivity.this);
+                    sessionManagement.saveSession(user);
+
+                    // Redirect to main activity
+                    moveToMainActivity();
                 } else {
+                    // Failure
                     Toast.makeText(LoginActivity.this, "Credentials invalides", Toast.LENGTH_LONG).show();
                     Log.w(TAG, "signIn:failure", task.getException());
                 }
@@ -91,6 +90,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (password.isEmpty()) flag = false ;
 
         return flag;
+    }
+
+    private void moveToMainActivity() {
+        Intent mainActivity= new Intent(getApplicationContext(), MainActivity.class);
+        mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(mainActivity);
     }
 
 }

@@ -1,4 +1,4 @@
-package fr.appmob.easyhome;
+package fr.appmob.easyhome.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import fr.appmob.easyhome.R;
 import fr.appmob.easyhome.models.User;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         button2.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v)
             {
-                Intent profileActivity= new Intent(getApplicationContext(),LoginActivity.class);
+                Intent profileActivity= new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(profileActivity);
                 finish();
             }

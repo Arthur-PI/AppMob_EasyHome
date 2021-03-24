@@ -1,9 +1,8 @@
-package fr.appmob.easyhome;
+package fr.appmob.easyhome.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import fr.appmob.easyhome.R;
 import fr.appmob.easyhome.models.Advert;
 
 import java.util.List;
