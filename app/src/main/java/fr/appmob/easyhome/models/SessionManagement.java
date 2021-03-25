@@ -1,11 +1,8 @@
 package fr.appmob.easyhome.models;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
-import fr.appmob.easyhome.activities.MainActivity;
-import io.opencensus.internal.StringUtils;
 
 public class SessionManagement {
 	SharedPreferences sharedPreferences;

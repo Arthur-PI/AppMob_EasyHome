@@ -8,29 +8,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import fr.appmob.easyhome.R;
 import fr.appmob.easyhome.models.Advert;
+import fr.appmob.easyhome.models.DataHandler;
+import fr.appmob.easyhome.models.SessionManagement;
 
 import java.util.List;
 
-public class MyAdvertsAdapter extends RecyclerView.Adapter<MyAdvertsAdapter.ViewHolder> {
+public class
+MyAdvertsAdapter extends RecyclerView.Adapter<MyAdvertsAdapter.ViewHolder> {
     private final List<Advert> adverts;
+    private final List<String> likesId;
 
-    public MyAdvertsAdapter(List<Advert> items) {
+    public MyAdvertsAdapter(List<Advert> items, List<String> likesId) {
         this.adverts = items;
+        this.likesId = likesId;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.my_row, parent, false);
+        View view = inflater.inflate(R.layout.card_advert, parent, false);
 
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_product, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,6 +50,19 @@ public class MyAdvertsAdapter extends RecyclerView.Adapter<MyAdvertsAdapter.View
         holder.bedrooms.setText(advert.getBedrooms() + " chambres");
         holder.price.setText(String.format("%,d", advert.getPrice()).replace(",", " ") + " €");
         holder.area.setText(Html.fromHtml(advert.getArea() + "m<sup>2</sup>"));
+        if (likesId.contains(advert.getUnique_id())) changeLikeImage(holder.like_img, R.drawable.favorite_red_18dp);
+        else changeLikeImage(holder.like_img, R.drawable.favorite_white_18dp);
+
+        holder.like.setOnClickListener(v -> {
+            String userId = new SessionManagement(holder.mView.getContext()).getSession();
+            if (holder.like_img.getTag().equals(R.drawable.favorite_white_18dp)) {
+                DataHandler.getInstance().likeAdvert(userId, advert.getUnique_id());
+                changeLikeImage(holder.like_img, R.drawable.favorite_red_18dp);
+            } else {
+                DataHandler.getInstance().unlikeAdvert(userId, advert.getUnique_id());
+                changeLikeImage(holder.like_img, R.drawable.favorite_white_18dp);
+            }
+        });
     }
 
     @Override
@@ -54,8 +72,9 @@ public class MyAdvertsAdapter extends RecyclerView.Adapter<MyAdvertsAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        TextView website, bedrooms, rooms, price, area, location, published_date;
-        ImageView image;
+        TextView website, bedrooms, rooms, price, area, location;
+        ImageView image, like_img;
+        RelativeLayout like;
 
         public ViewHolder(View view) {
             super(view);
@@ -67,7 +86,14 @@ public class MyAdvertsAdapter extends RecyclerView.Adapter<MyAdvertsAdapter.View
             price =  itemView.findViewById(R.id.advert_price);
             area =  itemView.findViewById(R.id.advert_area);
             location =  itemView.findViewById(R.id.advert_city);
-//            published_date =  itemView.findViewById(R.id.advert_area);
+            like = itemView.findViewById(R.id.advert_like_button);
+            like_img = itemView.findViewById(R.id.advert_like_img);
         }
     }
+
+    private void changeLikeImage(ImageView img, int drawable) {
+        img.setTag(drawable);
+        img.setImageResource(drawable);
+    }
+
 }

@@ -40,12 +40,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         login.setOnClickListener(this);
 
-        registerRedirect.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent profileActivity= new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(profileActivity);
-                finish();
-            }
+        registerRedirect.setOnClickListener(v -> {
+            Intent profileActivity= new Intent(getApplicationContext(), RegisterActivity.class);
+            startActivity(profileActivity);
+            finish();
         });
     }
 

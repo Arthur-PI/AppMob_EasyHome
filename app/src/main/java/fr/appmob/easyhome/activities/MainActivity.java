@@ -15,54 +15,59 @@ import fr.appmob.easyhome.fragments.ProfileFragment;
 import fr.appmob.easyhome.fragments.HomeFragment;
 import fr.appmob.easyhome.R;
 import fr.appmob.easyhome.fragments.FavouritesFragment;
+import fr.appmob.easyhome.models.DataHandler;
+import fr.appmob.easyhome.models.SessionManagement;
 
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNav;
-    int currFrag;
+	BottomNavigationView bottomNav;
+	RecyclerView recyclerView;
+	int currFrag;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        // Needed to used the API
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        currFrag = 0;
+		DataHandler.getInstance().initUser(new SessionManagement(MainActivity.this).getSession());
 
-        setContentView(R.layout.activity_main);
+		// Needed to used the API
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+		currFrag = 0;
 
-        bottomNav = findViewById(R.id.activity_main_bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new HomeFragment()).commit();
-    }
+		setContentView(R.layout.activity_main);
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    if (currFrag == item.getItemId()) return false;
-                    Fragment selectedFragment = null;
-                    String tag = null;
-                    switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            currFrag = R.id.nav_home;
-                            selectedFragment = new HomeFragment();
-                            tag = "HOME";
-                            break;
-                        case R.id.nav_favourites:
-                            currFrag = R.id.nav_favourites;
-                            selectedFragment = new FavouritesFragment();
-                            tag = "LIKES";
-                            break;
-                        case R.id.nav_profile:
-                            currFrag = R.id.nav_profile;
-                            selectedFragment = new ProfileFragment();
-                            tag = "PROFILE";
-                            break;
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, selectedFragment, tag).commit();
-                    return true;
-                }
-            };
+		bottomNav = findViewById(R.id.activity_main_bottom_navigation);
+		bottomNav.setOnNavigationItemSelectedListener(navListener);
+		getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new HomeFragment()).commit();
+	}
+
+	private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+		new BottomNavigationView.OnNavigationItemSelectedListener() {
+			@Override
+			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+				if (currFrag == item.getItemId()) return false;
+				Fragment selectedFragment = null;
+				String tag = null;
+				switch (item.getItemId()) {
+					case R.id.nav_home:
+						currFrag = R.id.nav_home;
+						selectedFragment = new HomeFragment();
+						tag = "HOME";
+						break;
+					case R.id.nav_favourites:
+						currFrag = R.id.nav_favourites;
+						selectedFragment = new FavouritesFragment();
+						tag = "LIKES";
+						break;
+					case R.id.nav_profile:
+						currFrag = R.id.nav_profile;
+						selectedFragment = new ProfileFragment();
+						tag = "PROFILE";
+						break;
+				}
+				getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, selectedFragment, tag).commit();
+				return true;
+			}
+		};
 }
