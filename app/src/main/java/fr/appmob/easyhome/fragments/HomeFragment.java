@@ -50,22 +50,22 @@ public class HomeFragment extends Fragment {
 		recyclerView.setAdapter(myAdapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-//		criterias = view.findViewById(R.id.home_criteres_button);
-//		criterias.setOnClickListener(v -> {
-//			String tag = "criteria";
-//			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//			fragmentTransaction.replace(R.id.main_fragment, new CriteriasFragment(), tag).addToBackStack(null).commit();
-//		});
+		criterias = view.findViewById(R.id.home_criteres_button);
+		criterias.setOnClickListener(v -> {
+			Log.i(TAG, "HELLO BOOOOOOOOOOOOOYY");
+			String tag = "criteria";
+			getActivity().getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.main_fragment, new CriteriasFragment(), tag)
+				.addToBackStack(null)
+				.commit();
+		});
 
 		return view;
 	}
 
 	private List<Advert> getAdverts() {
-		Criteria c = new Criteria("", "75002","paris", "25", "150", "", "100000","","");
-		DataHandler dh = DataHandler.getInstance();
-		dh.setCriteres(c);
-		return dh.getAdverts();
+		return DataHandler.getInstance().getAdverts();
 	}
 
 }

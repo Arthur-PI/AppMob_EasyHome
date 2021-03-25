@@ -37,17 +37,8 @@ public class CriteriasFragment extends Fragment {
     private View view;
     private static final String TAG = "CriteriaFragmaent";
 
-    public CriteriasFragment() {
+    public CriteriasFragment() { }
 
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment CriteriasFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CriteriasFragment newInstance() {
         CriteriasFragment fragment = new CriteriasFragment();
         Bundle args = new Bundle();
