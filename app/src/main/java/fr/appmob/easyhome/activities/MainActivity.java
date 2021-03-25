@@ -22,7 +22,7 @@ import fr.appmob.easyhome.models.SessionManagement;
 public class MainActivity extends AppCompatActivity {
 	BottomNavigationView bottomNav;
 	RecyclerView recyclerView;
-	int currFrag;
+	static int currFrag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +51,17 @@ public class MainActivity extends AppCompatActivity {
 				String tag = null;
 				switch (item.getItemId()) {
 					case R.id.nav_home:
-						currFrag = R.id.nav_home;
+						setCurFrag(R.id.nav_home);
 						selectedFragment = new HomeFragment();
 						tag = "HOME";
 						break;
 					case R.id.nav_favourites:
-						currFrag = R.id.nav_favourites;
+						setCurFrag(R.id.nav_favourites);
 						selectedFragment = new FavouritesFragment();
 						tag = "LIKES";
 						break;
 					case R.id.nav_profile:
-						currFrag = R.id.nav_profile;
+						setCurFrag(R.id.nav_profile);
 						selectedFragment = new ProfileFragment();
 						tag = "PROFILE";
 						break;
@@ -70,4 +70,8 @@ public class MainActivity extends AppCompatActivity {
 				return true;
 			}
 		};
+
+	public static void setCurFrag(int newFrag) {
+		currFrag = newFrag;
+	}
 }
