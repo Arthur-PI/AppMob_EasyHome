@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ import fr.appmob.easyhome.models.SessionManagement;
 
 
 public class HomeFragment extends Fragment {
-
+	private Button criterias;
 	private RecyclerView recyclerView;
 	private RelativeLayout likeLayout;
 	private static final String TAG = "HOME FRAGMENT";
@@ -61,7 +62,7 @@ public class HomeFragment extends Fragment {
 	}
 
 	private List<Advert> getAdverts() {
-		Criteria c = new Criteria("75002","", "paris", "25", "150", "100000", null, false, false, true, false);
+		Criteria c = new Criteria("", "75002","paris", "25", "150", "", "100000","","");
 		DataHandler dh = DataHandler.getInstance();
 		dh.setCriteres(c);
 		return dh.getAdverts();

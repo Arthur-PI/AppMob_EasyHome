@@ -1,44 +1,50 @@
 package fr.appmob.easyhome.models;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 public class Criteria {
 
     private String rooms;
-    private String postal_code;
+    private String postal_codes;
     private String city;
     private String area_max;
     private String area_min;
     private String price_min;
     private String price_max;
-    private boolean property_type_house;
-    private boolean property_type_apartment;
-    private boolean search_type_buy;
-    private boolean search_type_rent;
+    private String property_type;
+    private String search_type;
     private boolean modified;
 
 
     public Criteria() {
     }
-    public Criteria(String postal_code,String rooms, String city, String area_min, String area_max, String price_min, String price_max, boolean property_type_house, boolean property_type_apartment, boolean search_type_buy, boolean search_type_rent) {
+    public Criteria(String rooms, String postal_codes, String city, String area_max, String area_min, String price_min, String price_max, String property_type, String search_type) {
         this.rooms = rooms;
+        this.postal_codes = postal_codes;
         this.city = city;
         this.area_max = area_max;
         this.area_min = area_min;
         this.price_min = price_min;
         this.price_max = price_max;
-        this.property_type_house = property_type_house;
-        this.property_type_apartment = property_type_apartment;
-        this.postal_code = postal_code;
-        this.search_type_buy = search_type_buy;
-        this.search_type_rent = search_type_rent;
-        this.modified = true;
+        this.setProperty_type(property_type);
+        this.setSearch_type(search_type);
     }
 
+    public String getProperty_type() {
+        return property_type;
+    }
 
+    public void setProperty_type(String property_type) {
+        this.property_type = property_type;
+    }
+    public String getSearch_type() {
+        return search_type;
+    }
+
+    public void setSearch_type(String search_type) {
+        this.search_type = search_type;
+    }
 
     public String getRooms() {
         return rooms;
@@ -93,49 +99,17 @@ public class Criteria {
         this.price_max = price_max;
     }
 
-    public boolean getProperty_type_house() {
-        return property_type_house;
-    }
-
     public void setProperty_type_house(boolean property_type_house) {
         this.modified = true;
-        this.property_type_house = property_type_house;
     }
 
-    public boolean getProperty_type_apartment() {
-        return property_type_apartment;
+    public String getPostal_codes() {
+        return postal_codes;
     }
 
-    public void setProperty_type_apartment(boolean property_type_apartment) {
+    public void setPostal_codes(String postal_codes) {
         this.modified = true;
-        this.property_type_apartment = property_type_apartment;
-    }
-
-    public String getPostal_code() {
-        return postal_code;
-    }
-
-    public void setPostal_code(String postal_code) {
-        this.modified = true;
-        this.postal_code = postal_code;
-    }
-
-    public boolean getSearch_type_buy() {
-        return search_type_buy;
-    }
-
-    public void setSearch_type_buy(boolean search_type_buy) {
-        this.modified = true;
-        this.search_type_buy = search_type_buy;
-    }
-
-    public boolean getSearch_type_rent() {
-        return search_type_rent;
-    }
-
-    public void setSearch_type_rent(boolean search_type_rent) {
-        this.modified = true;
-        this.search_type_rent = search_type_rent;
+        this.postal_codes = postal_codes;
     }
 
     public boolean isNew() {
@@ -148,16 +122,14 @@ public class Criteria {
 
     public Map<String, String> getFormatedData() {
         Map<String, String> data = new HashMap<>();
-        if (isValid(postal_code)) data.put("postal_codes", postal_code);
+        if (isValid(postal_codes)) data.put("postal_codes", postal_codes);
         if (isValid(city)) data.put("city", city);
         if (isValid(area_min)) data.put("area_min", area_min);
         if (isValid(area_max)) data.put("area_max", area_max);
         if (isValid(price_min)) data.put("price_min", price_min);
         if (isValid(price_max)) data.put("price_max", price_max);
-        if (property_type_apartment && !property_type_house) data.put("property_type", "Apartment");
-        if (!property_type_apartment && property_type_house) data.put("property_type", "House");
-        if (search_type_buy && !search_type_rent) data.put("search_type", "buy");
-        if (!search_type_buy && search_type_rent) data.put("search_type", "rent");
+        if (isValid(property_type)) data.put("property_type", property_type);
+        if (isValid(search_type)) data.put("search_type", search_type);
         return data;
     }
 

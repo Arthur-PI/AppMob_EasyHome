@@ -33,15 +33,13 @@ public class DataHandler {
 
 	private List<Advert> adverts;
 	private String lastAdvertID;
-
-	public Criteria getCriteres() {
-		return criteres;
-	}
-
 	private Criteria criteres;
 	private List<String> likesId;
 	private boolean finished;
 
+	public Criteria getCriteres() {
+		return criteres;
+	}
 	static {
 		INSTANCE = new DataHandler();
 		Log.i(TAG, "Data Handler instanciate");

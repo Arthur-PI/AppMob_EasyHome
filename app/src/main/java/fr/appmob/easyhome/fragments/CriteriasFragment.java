@@ -3,7 +3,6 @@ package fr.appmob.easyhome.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,15 +15,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
-
-import java.math.BigDecimal;
 
 import fr.appmob.easyhome.R;
 import fr.appmob.easyhome.models.Criteria;
@@ -67,11 +60,11 @@ public class CriteriasFragment extends Fragment {
         area_min.setText(criteria.getArea_min());
         price_min.setText(criteria.getPrice_min());
         price_max.setText(criteria.getPrice_max());
-        postal_code.setText(criteria.getPostal_code());
-        search_type_buy.setChecked(criteria.getSearch_type_buy());
-        search_type_rent.setChecked(criteria.getSearch_type_rent());
-        property_type_house.setChecked(criteria.getProperty_type_house());
-        property_type_apartment.setChecked(criteria.getProperty_type_apartment());
+        postal_code.setText(criteria.getPostal_codes());
+        search_type_buy.setChecked(criteria.getSearch_type().equals("buy")||criteria.getSearch_type().equals(""));
+        search_type_rent.setChecked(criteria.getSearch_type().equals("rent")||criteria.getSearch_type().equals(""));
+        property_type_house.setChecked(criteria.getProperty_type().equals("House")||criteria.getProperty_type().equals(""));
+        property_type_apartment.setChecked(criteria.getProperty_type().equals("Apartment")||criteria.getProperty_type().equals(""));
 
     }
     public void saveCriteria(){
@@ -82,17 +75,22 @@ public class CriteriasFragment extends Fragment {
         criteria.setArea_min(String.valueOf(area_min.getText()));
         criteria.setPrice_min(String.valueOf(price_min.getText()));
         criteria.setPrice_max(String.valueOf(price_max.getText()));
-        criteria.setPostal_code(String.valueOf(postal_code.getText()));
-        criteria.setSearch_type_buy(search_type_buy.isChecked());
-        criteria.setSearch_type_rent(search_type_rent.isChecked());
-        criteria.setProperty_type_house(property_type_house.isChecked());
-        criteria.setProperty_type_apartment(property_type_apartment.isChecked());
+        criteria.setPostal_codes(String.valueOf(postal_code.getText()));
+        if (this.search_type_buy.isChecked() == search_type_rent.isChecked())
+            criteria.setSearch_type("");
+        else if(this.search_type_rent.isChecked()) criteria.setSearch_type("rent");
+        else if (this.search_type_buy.isChecked()) criteria.setSearch_type("buy");
+
+        if (this.property_type_apartment.isChecked()==this.property_type_apartment.isChecked())
+            criteria.setProperty_type("");
+        else if (this.property_type_apartment.isChecked()) criteria.setProperty_type("Apartment");
+        else if (this.property_type_apartment.isChecked()) criteria.setProperty_type("House");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String userId = new SessionManagement(getContext()).getSession();
         DataHandler handler = DataHandler.getInstance();
         Gson gson = new Gson();
-        db.collection("criterias").document(userId).update("criteria",gson.toJson(criteria));
+        db.collection("criterias").document(userId).update("criteria",(String) gson.toJson(criteria));
 
     }
 
@@ -114,20 +112,21 @@ public class CriteriasFragment extends Fragment {
         String userId = new SessionManagement(getContext()).getSession();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("criterias")
-                .whereEqualTo("userId",userId)
+                .document(userId)
                 .get()
                 .addOnSuccessListener(s -> {
-                    for (DocumentSnapshot doc : s.getDocuments()) {
-                        Log.d(TAG, doc.getId() + " => " + doc.getData());
-                        String critere = (String) doc.get("criteria");
+                        String critere = (String) s.get("criteria");
+                        DataHandler handler = DataHandler.getInstance();
+                        Gson gson = new Gson();
+                        handler.setCriteres(gson.fromJson(critere, Criteria.class));
+                        String type = new String();
+                        initCriteria(handler.getCriteres());
 
-                        //handler.setCriteres(gson.fromJson(task.getResult().toString(), Criteria.class));
-
-                    }
                 });
 
         buttonValider = (Button) view.findViewById(R.id.criteres_envoyer_button);
         buttonValider.setOnClickListener(v -> {
+            Log.w(TAG,"Je suis dans le save");
             saveCriteria();
             String tag = "home";
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

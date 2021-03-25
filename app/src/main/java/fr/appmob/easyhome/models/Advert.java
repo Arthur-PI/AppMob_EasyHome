@@ -1,5 +1,7 @@
 package fr.appmob.easyhome.models;
 
+import java.util.Arrays;
+
 public class Advert {
     private String ads_type, area, city, rooms, bedrooms, title, description, postal_code;
     private String longitude, latitude, agency_name, floor;
@@ -76,7 +78,7 @@ public class Advert {
         return postal_code;
     }
 
-    public void setPostal_codes(String postal_code) {
+    public void setPostal_code(String postal_code) {
         this.postal_code = postal_code;
     }
 
@@ -257,4 +259,41 @@ public class Advert {
     }
 
     public Advert() { }
+
+    @Override
+    public String toString() {
+        return "Advert{" +
+                "ads_type='" + ads_type + '\'' +
+                ", area='" + area + '\'' +
+                ", city='" + city + '\'' +
+                ", rooms='" + rooms + '\'' +
+                ", bedrooms='" + bedrooms + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", postal_code='" + postal_code + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", agency_name='" + agency_name + '\'' +
+                ", floor='" + floor + '\'' +
+                ", images_url=" + Arrays.toString(images_url) +
+                ", website='" + website + '\'' +
+                ", property_type='" + property_type + '\'' +
+                ", site_id='" + site_id + '\'' +
+                ", published_at='" + published_at + '\'' +
+                ", created_at='" + created_at + '\'' +
+                ", geoloc_prob='" + geoloc_prob + '\'' +
+                ", duplicate='" + duplicate + '\'' +
+                ", unique_id='" + unique_id + '\'' +
+                ", url='" + url + '\'' +
+                ", agency=" + agency +
+                ", coloc_friendly=" + coloc_friendly +
+                ", elevator=" + elevator +
+                ", furnished=" + furnished +
+                ", is_new=" + is_new +
+                ", sous_loc=" + sous_loc +
+                ", short_term=" + short_term +
+                ", anomaly_detected=" + anomaly_detected +
+                ", price=" + price +
+                '}';
+    }
 }
